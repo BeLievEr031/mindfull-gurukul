@@ -2,7 +2,6 @@ import { INext, IRegisterUser, IReq, IRes } from "../types";
 import joi from "joi";
 import createError from "http-errors"
 const validateRegisterUser = (req: IReq, res: IRes, next: INext) => {
-
     const userSchema = joi.object<IRegisterUser>({
         username: joi.string().required().disallow("").trim(),
         email: joi.string().email().required().disallow(""),
@@ -16,8 +15,22 @@ const validateRegisterUser = (req: IReq, res: IRes, next: INext) => {
 
     const { value, error } = userSchema.validate(req.body)
     if (error) {
-        return next(createError(409, error))
+        return next(createError(422, error))
     }
+    req.user = value;
+    next();
+}
+
+const validateLoginUser = (req: IReq, res: IRes, next: INext) => {
+    const userSchema = joi.object<IRegisterUser>({
+        email: joi.string().email().required().disallow(""),
+        password: joi.string().required().disallow(""),
+    })
+    const { value, error } = userSchema.validate(req.body)
+    if (error) {
+        return next(createError(422, error))
+    }
+
     req.user = value;
     next();
 }
@@ -25,4 +38,4 @@ const validateRegisterUser = (req: IReq, res: IRes, next: INext) => {
 
 
 
-export { validateRegisterUser };
+export { validateRegisterUser,validateLoginUser };

@@ -44,6 +44,9 @@ const userSchema = new Schema<IRegisterUser>({
     state: {
         type: String,
         required: [true, "Stae required !!"]
+    },
+    refreshToken:{
+        type: String,
     }
 }, {
     timestamps: true
@@ -59,6 +62,7 @@ userSchema.pre("save", async function (next) {
 
 // function for comparing the password 
 userSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
+    console.log(password,this.password);
     const isPassword = await bcrypt.compare(password, this.password)
     return isPassword;
 }

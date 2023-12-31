@@ -1,4 +1,4 @@
-import { validateRegisterUser } from "./validator.middleware"
+import { validateRegisterUser,validateLoginUser } from "./validator.middleware"
 import errorHandler from "./errorHandler.middleware";
 
-export { validateRegisterUser, errorHandler };
+export { validateRegisterUser,validateLoginUser, errorHandler };

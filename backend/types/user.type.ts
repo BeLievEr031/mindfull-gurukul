@@ -1,4 +1,5 @@
-interface IRegisterUser {
+import { Document } from "mongoose"
+interface IRegisterUser extends Document {
     username: string
     email: string
     phone: number
@@ -7,6 +8,10 @@ interface IRegisterUser {
     hearingSource: "LinkedIn" | "Friends" | "Job Portal" | "Others"
     city: string
     state: string
+    refreshToken: string
+    comparePassword: (password: string) => boolean;
+    generateAccessToken: () => string;
+    generateRefreshToken: () => string;
 }
 
 interface IUser extends IRegisterUser {

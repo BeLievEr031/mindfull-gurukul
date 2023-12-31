@@ -1,3 +1,3 @@
-import { regitserUserService } from "./user.service"
+import { regitserUserService, loginUserService } from "./user.service"
 
-export { regitserUserService }
+export { regitserUserService, loginUserService }
