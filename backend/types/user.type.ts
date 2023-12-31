@@ -9,10 +9,14 @@ interface IRegisterUser {
     state: string
 }
 
+interface IUser extends IRegisterUser {
+    username: string
+}
+
 interface ILoginUser {
     email: string
     password: string
 }
 
 
-export { IRegisterUser,ILoginUser };
+export { IRegisterUser, ILoginUser, IUser };

@@ -15,7 +15,8 @@ const userSchema = new Schema<IRegisterUser>({
     },
     email: {
         type: String,
-        required: [true, "email required !!"]
+        required: [true, "email required !!"],
+        unique: true
     },
     password: {
         type: String,
@@ -24,11 +25,13 @@ const userSchema = new Schema<IRegisterUser>({
     },
     gender: {
         type: String,
-        required: [true, "Gender required !!"]
+        required: [true, "Gender required !!"],
+        enum: ["Male", "Female", "Other"]
     },
     hearingSource: {
         type: String,
-        required: [true, "Hearing Source required !!"]
+        required: [true, "Hearing Source required !!"],
+        enum: ["LinkedIn", "Friends", "Job Portal", "Others"]
     },
     phone: {
         type: Number,
